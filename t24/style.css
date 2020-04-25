@@ -1,0 +1,12 @@
+﻿body{
+	background: linear-gradient(to right, gray, white, silver);
+	font-family:'Pacifico', cursive;
+}
+p{
+	padding: 0 100px;
+	font-size:16pt;
+}
+h1{
+	font-size:40pt;
+	margin-bottom:100px;
+}	
