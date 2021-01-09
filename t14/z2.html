@@ -1,61 +1,39 @@
-﻿<html>
-    <head>
-        <style>
-		     #menu{
-		           background-color:black;
-                   border-radius:10px;
-                   padding:15px;
-                   box-shadow:0px 0px 100px blue;				   
-		           }
-		     body{
-			       background-image:url('10.jpg')
-				   }
-			 #a11{
-			       color:gray;
-				   text-decoration:none;
-				   border:1px solid gray;
-				   border-radius:7px;
-				   padding:5px;
-				   box-shadow:0px 0px 10px white;
-				   }
-			 #a22{
-			       color:white;
-				   text-decoration:none;
-				   border:1px solid white;
-				   border-radius:7px;
-				   padding:5px;
-				   }
-		     h1{
-			       font-size:70px;
-				   }
-		     #buy{
-			       font-size:30px;
-				   text-decoration:none;
-				   background-color:blue;
-				   color:white;
-				   border-radius:10px;
-				   padding:15px;
-				   }
-			 #a33{
-			       color:gray;
-				   text-decoration:none;
-				   border:1px solid gray;
-				   border-radius:7px;
-				   padding:5px;
-                   }				   
-        </style>
-    </head>
-
-    <body>
-        <p id='menu'>
-         <a href='z1.html' id='a11'>IPHONE</a>
-         <a href='z2.html' id='a22'>IPAD</a>
-		 <a href='z3.html' id='a33'>AirPods</a>
-        </p>
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Тема 14</title>
+	<link rel="stylesheet" href="1.css">
+</head>
+<body>
+	<h2 align="center">Список усіх користувачів</h2>
+	
+	<div class="links">
+		<a href="z1.html" >Усі користувачі</a>
+		<a href="z2.html"class="active_link">Користувачі чоловіки</a>
+		<a href="z3.html">Користувачі жінки</a>
+		<a href="z4.html">Користувачі з підтверженим email</a>
+		<a href="z5.html">Email від google</a>
+		<a href="z6.html">Email від yahoo</a>
+		<a href="z7.html">Email від bigmir</a>
+	</div>
+	
+	<table class="table">
+		<thead>
+			<tr>
+				<th>№</th>
+				<th>Name</th>
+				<th>Gender</th>
+				<th>Email</th>
+				<th>Confirmed</th>
+			</tr>
+		</thead>
 		
-		<h1 align='center'>iPad</h1>
-
- <img src='ipad.png' width='500px' align='center'>    <a href='https://www.olx.ua/obyavlenie/apple-ipad-pro-10-5-256gb-space-gray-wi-fi-chehol-IDGcHfK.html?sd=1#d31afdfac0' id='buy'>Купити</a>
-		
-    </body>
+		<tbody id="users_table">
+			
+		</tbody>
+	</table>
+	
+	<script src="2.js"></script>
+</body>
 </html>
