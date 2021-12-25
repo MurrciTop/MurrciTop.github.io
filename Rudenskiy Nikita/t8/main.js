@@ -1,38 +1,101 @@
-class Bot{
-   constructor(health, attack){
-       this.health = health;
-       this.attack = attack;
-   }
+class Order{
+    constructor(produkt_name, product_price, user_email, count, delivery, sumbitted = false, save = false){
+
+ 
+    this.produkt_name   = produkt_name;
+    this.product_price  = product_price;
+    this.user_email     = user_email;
+    this.count          = count;
+    this.delivery       = delivery;
+    this.sumbitted      = sumbitted;
+
+    this.total          = this.getTotalPrice();
+    this.delivery_price = this.getDeliveryPrice();
+
+    if(save){
+        this.saveOrder();
+    }
+ }
+
+    getDeliveryPrice(){
+        switch( this.delivery){
+            case "Новапошта":
+                return 70;
+            case "Укр пошта":
+                return 60;
+            case "Кур'єр":
+                return 80;
+            default:
+                return 70;
+        }
+    }
+
+    getTotalPrice(){
+        return this.product_price*this.count + this.getDeliveryPrice();
+    }
+
+    saveOrder(){
+        let new_order = {
+            produkt_name    : this.produkt_name,
+            product_price   : this.product_price,
+            user_email      : this.user_email,
+            count           : this.count,
+            delivery        : this.delivery,
+            sumbitted       : this.sumbitted,
+            total           : this.total,
+            delivery_price  : this.delivery_price
+        }  
+        db.collection("orders").add(new_order).then( () => alert("Order added!"));
+    }
 }
 
-class Cripper extends Bot{
-    startBattle(){
-        document.getElementById('cripper').classList.add("anim_1");
-    }
-    endBattle(){
-        document.getElementById('cripper').classList.remove("anim_1");
-    }
+function makeOrder(){
+    const order = new Order(
+        document.getElementById("product_name").value,
+        document.getElementById("product_price").value,
+        document.getElementById("user_email").value,
+        document.getElementById("count").value,
+        document.getElementById("delivery").value,
+        false,
+        true
+    );
+
+console.log(order);
+console.log(order.getDeliveryPrice());
+console.log(order.getTotalPrice());
 }
-class Steve extends Bot{
-    startBattle(){
-        document.getElementById('steve').classList.add("anim_2");
-    }
-    endBattle(){
-        document.getElementById('steve').classList.remove("anim_2")
+
+class Admin{
+    static approveOrder(id){
+        db.collection("orders").doc(id).update({
+            sumbitted:true
+        })
+    }   
+    static dissApproveOrder(id){
+        db.collection("orders").doc(id).update({
+            sumbitted:false
+        })
+        }
+    static deletOrder(id){
+        db.collection("orders").doc(id).delet().then(
+            () => alert("Order deleted!!!")
+        )
     }
 }
 
-const cripper = new Cripper(20, 10);
-const steve = new Steve(20, 1);
-function startBattle(){
-    cripper.startBattle();
-    steve.startBattle();
-}
+Admin.approveOrder("......");
 
-function endBattle(){
-    cripper.endBattle();
-    steve.endBattle();
-}
+function getOrders(){
+    db.collection("orders").get().then(
+        res => {
+            res.forEach(element => {
+                console.log(element.id, element.data());
+            })
+        }
+    )
 
-console.log(cripper);
-console.log(steve);
+}
+    
+Admin.sayHello();
+
+console.log( Admin.test );
